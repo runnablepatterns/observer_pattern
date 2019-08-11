@@ -90,8 +90,12 @@ public class SurveyData implements ISubject {
 		this.totalAnswers = _totalAnswers;
 		this.currentScore = _score;
 		
-		// notify all observers
-		this.notifyObservers();
+		// only notify if state has changed
+		if(this.getState()) {
+			// notify all observers
+			this.notifyObservers();
+			this.setState(false);
+		}
 	}
 	
 	/**
